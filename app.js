@@ -10,7 +10,7 @@ const app = express()
 const expo = new Expo()
 const PORT = 3001
 // import * as CronJob from 'cron'
-const cronJob = require('cron')
+let { CronJob } = require('cron')
 
 // mongoose.connect('mongodb://localhost/DBNAME', {
 //     useNewUrlParser: true})
@@ -88,8 +88,8 @@ app.use(errorHandler)
 
 app.listen(PORT, function () {
     console.log(`listening on port ${PORT}`)
-    // new CronJob('0 0 9 1 * *', function () {
-    //     cron()
-    // }, null, true, 'Asia/Jakarta')
+    new CronJob('0 * * * * *', function () {
+        // cron()
+    }, null, true, 'Asia/Jakarta')
 })
 

@@ -35,6 +35,19 @@ module.exports = {
 
             }
         }))
+    },
+    pushToken(req,res,next) {
+        // console.log(req.body)
+        // res.send(req.body)
+        axios
+        .post('https://exp.host/--/api/v2/push/send',{
+           to: 'ExponentPushToken[Ki4qWeBkl-DoZflIsrfopb]',
+           icon: '../assets/icon.jpg',
+           title: 'Sudah seminggu nih, jangan lupa sisihkan duit ya brong!',
+           body: 'Biar sedikit asal mengigit',
+           sound: 'default',
+           data: {sip:'Mantoel'},
+        })
     }
     
 }
