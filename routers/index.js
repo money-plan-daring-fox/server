@@ -3,6 +3,6 @@ const controllers = require('../controllers/index')
 
 router.get('/getItemsPrice', controllers.getItemsPrice)
 // router.get('/getRecommendation', controllers.getRecommendation)
-router.post('/push-token', controllers.pushToken)
+// router.post('/push-token', controllers.pushToken)
 
 module.exports = router

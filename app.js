@@ -3,11 +3,11 @@ import express from 'express'
 import Expo from 'expo-server-sdk'
 import cors from 'cors'
 import kue from 'kue'
-import cron from './helpers/cronJob'
 const router = require('./routers/index.js')
 const app = express()
 const expo = new Expo()
 const PORT = 3001
+const kueFunc = require('./helpers/kueSendNotif')
 // import * as CronJob from 'cron'
 let {
     CronJob
@@ -24,6 +24,7 @@ let {
 let savedPushTokens = [];
 
 const saveToken = (token) => {
+    /* istanbul ignore else  */
     if (savedPushTokens.indexOf(token === -1)) {
         savedPushTokens.push(token);
     }
@@ -80,10 +81,13 @@ app.post('/message', (req, res) => {
 
 app.use("/kue-ui", kue.app)
 
+/* istanbul ignore next */
+
 app.listen(PORT, function () {
+    let cronTab = process.env.NODE_ENV === 'test' ? '* * * * * *' : '0 * * * * *'
     console.log(`listening on port ${PORT}`)
-    new CronJob('*/10000000 * * * * *', function () {
-        cron()
+    new CronJob(cronTab, function () {
+        kueFunc.sendNotifWeekly()
     }, null, true, 'Asia/Jakarta')
 })
 

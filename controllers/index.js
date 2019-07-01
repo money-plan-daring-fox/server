@@ -3,15 +3,19 @@ const client = require('../redis/client')
 
 module.exports = {
     getItemsPrice(req,res,next) {
-        let key = req.query.key.split(' ').join('%20')
+        let key
+        if(req.query.key){
+            key = req.query.key.split(' ').join('%20')
+        } 
         let price = req.query.price
-
-        console.log(key, price)
-
+        
         axios
         .get('https://ace.tokopedia.com/search/product/v3?scheme=https&device=desktop&related=true&catalog_rows=5&source=search&ob=23&st=product&rows=60&q='+key+'&safe_search=false&fcity=174,175,176,177,178')
         .then(({data}) => {
-            console.log(data.data.products)
+            if (!price&&!key){
+                let err =  new Error('no query!')
+                throw err
+            }
             let result = data.data.products.filter(el => {
                 let dataPrice = el.price
                 .split("")
@@ -19,9 +23,10 @@ module.exports = {
                 .join("");
                 return Number(dataPrice) < Number(price)+(0.1*(Number(price))) && Number(dataPrice) > (Number(price) - (0.1*Number(price))) 
             })
+            /* istanbul ignore else */
             if(price){
                 res.status(200).json(result)
-            } else {
+            } else if (data.data.products.length > 0 ) {
                 res.status(200).json(data.data.products)
             }
         })
@@ -48,18 +53,21 @@ module.exports = {
     //         }
     //     }))
     // },
-    pushToken(req,res,next) {
-        // console.log(req.body)
-        // res.send(req.body)
-        axios
-        .post('https://exp.host/--/api/v2/push/send',{
-           to: 'ExponentPushToken[Ki4qWeBkl-DoZflIsrfopb]',
-           icon: '../assets/icon.jpg',
-           title: 'Sudah seminggu nih, jangan lupa sisihkan duit ya brong!',
-           body: 'Biar sedikit asal mengigit',
-           sound: 'default',
-           data: {sip:'Mantoel'},
-        })
-    }
+    // pushToken(req,res,next) {
+    //     console.log('ooi')
+    //     axios
+    //     .post('https://exp.host/--/api/v2/push/send',{
+    //        to: 'ExponentPushToken[Ki4qWeBkl-DoZflIsrfopb]',
+    //        icon: '../assets/icon.jpg',
+    //        title: 'Sudah seminggu nih, jangan lupa sisihkan duit ya brong!',
+    //        body: 'Biar sedikit asal mengigit',
+    //        sound: 'default',
+    //        data: {sip:'Mantoel'},
+    //     })
+    //     .then(data => {
+    //         res.status(200)
+    //     })
+
+    // }
     
 }

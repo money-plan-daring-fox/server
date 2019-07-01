@@ -2,13 +2,15 @@ const kue = require('kue')
 const queue = kue.createQueue()
 const axios = require('axios')
 
+/* istanbul ignore file */
+
 module.exports = {
     sendNotifWeekly() {
         queue.create('pushNotifWeekly', {
             title: 'Push Notif Weekly',
         }).save(function (err) {
             if (!err) {
-                console.log('mantap')
+                console.log('success')
             }
         })
         queue.process('pushNotifWeekly', (job, done) => {
