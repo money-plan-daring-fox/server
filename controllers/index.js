@@ -14,28 +14,28 @@ module.exports = {
             res.status(200).json(data.data.products)
         })
         .catch(err => {
-            next(err)
+            res.status(500).json(err.response)
         })
     },
-    getRecommendation(req,res,next) {
-        client.get('recommendation',((err,replies) => {
-            if(replies){
-                res.status(200).json(JSON.parse(replies))
-            } else {
-                axios
-                .get('https://hades.tokopedia.com/v1/categories?filter=type==tree&safe_search=false')
-                .then(({data}) => {
-                    client.set('recommendation', JSON.stringify(data))
-                    client.expireat('recommendation', parseInt((+new Date)/1000) + 86400)
-                    res.status(200).json(data)
-                })
-                .catch(err => {
-                    next(err)
-                })
+    // getRecommendation(req,res,next) {
+    //     client.get('recommendation',((err,replies) => {
+    //         if(replies){
+    //             res.status(200).json(JSON.parse(replies))
+    //         } else {
+    //             axios
+    //             .get('https://hades.tokopedia.com/v1/categories?filter=type==tree&safe_search=false')
+    //             .then(({data}) => {
+    //                 client.set('recommendation', JSON.stringify(data))
+    //                 client.expireat('recommendation', parseInt((+new Date)/1000) + 86400)
+    //                 res.status(200).json(data)
+    //             })
+    //             .catch(err => {
+    //                 next(err)
+    //             })
 
-            }
-        }))
-    },
+    //         }
+    //     }))
+    // },
     pushToken(req,res,next) {
         // console.log(req.body)
         // res.send(req.body)

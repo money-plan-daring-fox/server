@@ -4,13 +4,14 @@ import Expo from 'expo-server-sdk'
 import cors from 'cors'
 import kue from 'kue'
 import cron from './helpers/cronJob'
-const errorHandler = require('./middlewares/errorHandler')
 const router = require('./routers/index.js')
 const app = express()
 const expo = new Expo()
 const PORT = 3001
 // import * as CronJob from 'cron'
-let { CronJob } = require('cron')
+let {
+    CronJob
+} = require('cron')
 
 // mongoose.connect('mongodb://localhost/DBNAME', {
 //     useNewUrlParser: true})
@@ -48,12 +49,7 @@ const handlePushTokens = (message) => {
     let chunks = expo.chunkPushNotifications(notifications);
     (async () => {
         for (let chunk of chunks) {
-            try {
-                let receipts = await expo.sendPushNotificationsAsync(chunk);
-                console.log(receipts);
-            } catch (error) {
-                console.error(error);
-            }
+            await expo.sendPushNotificationsAsync(chunk);
         }
     })();
 }
@@ -64,11 +60,11 @@ app.use(express.urlencoded({
 }))
 app.use(express.json())
 
-app.use('/',router)
-
 app.get('/', (req, res) => {
     res.send('Push Notification Server Running');
 });
+
+app.use('/users', router)
 
 app.post('/token', (req, res) => {
     saveToken(req.body.token.value);
@@ -84,12 +80,11 @@ app.post('/message', (req, res) => {
 
 app.use("/kue-ui", kue.app)
 
-app.use(errorHandler)
-
 app.listen(PORT, function () {
     console.log(`listening on port ${PORT}`)
-    new CronJob('0 * * * * *', function () {
-        // cron()
+    new CronJob('*/10000000 * * * * *', function () {
+        cron()
     }, null, true, 'Asia/Jakarta')
 })
 
+module.exports = app
