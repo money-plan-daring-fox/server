@@ -52,18 +52,18 @@ describe('TEST 1: app.js', function() {
         })
     })
 
-    describe('Test CronJon', function() {
-        this.timeout(15000)
-        let cron = sinon.spy()
-        it('should call cron function', function(done) {
-            chai.request(app)
-                .get('/')
-                .end(function(err,res) {
-                    expect(cron).to.have.been.called()
-                    done()
-                })
-        })
-    })
+    // describe('Test CronJon', function() {
+    //     this.timeout(15000)
+    //     sinon.stub(cron, 'sendNotifWeekly')
+    //     it('should call cron function', function(done) {
+    //         chai.request(app)
+    //             .get('/')
+    //             .end(function(err,res) {
+    //                 expect(cron).to.have.been.called()
+    //                 done()
+    //             })
+    //     })
+    // })
 
     describe('Test handlePushTokens function', function() {
         let body = {token: {
