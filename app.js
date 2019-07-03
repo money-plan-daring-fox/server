@@ -84,10 +84,14 @@ app.use("/kue-ui", kue.app)
 /* istanbul ignore next */
 
 app.listen(PORT, function () {
-    let cronTab = process.env.NODE_ENV === 'test' ? '* * * * * *' : '0 * * * * *'
+    let cronTab = process.env.NODE_ENV === 'test' ? '* * * * * *' : '0 0 * * * *'
     console.log(`listening on port ${PORT}`)
     new CronJob(cronTab, function () {
         kueFunc.sendNotifWeekly()
+    }, null, true, 'Asia/Jakarta')
+
+    new CronJob('0 * * * * *', function() {
+        kueFunc.watchEverydayForNotifications()
     }, null, true, 'Asia/Jakarta')
 })
 

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>861867384752-ic0fdupchj6r0ornpvqbfl940rgq6fbe.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.861867384752-ic0fdupchj6r0ornpvqbfl940rgq6fbe</string>
+	<key>API_KEY</key>
+	<string>AIzaSyCqTUUADqOe_pS_3sNEy46GUhPTQNBvY4c</string>
+	<key>GCM_SENDER_ID</key>
+	<string>861867384752</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.daringfox.moneyplant</string>
+	<key>PROJECT_ID</key>
+	<string>money-plant-328e6</string>
+	<key>STORAGE_BUCKET</key>
+	<string>money-plant-328e6.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:861867384752:ios:e960be8a04d2b8ba</string>
+	<key>DATABASE_URL</key>
+	<string>https://money-plant-328e6.firebaseio.com</string>
+</dict>
+</plist>
