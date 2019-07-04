@@ -54,12 +54,12 @@ describe('TEST 1: app.js', function () {
         })
     })
 
-    describe('Test CronJob', function() {
+    describe('Test CronJob', function () {
         // let stub = sinon.stub(cron)
-        it('should call cron function', function(done) {
+        it('should call cron function', function (done) {
             chai.request(app).keepOpen()
-            .get('/')
-            .end(async function(err,res) {
+                .get('/')
+                .end(async function (err, res) {
                     await console.log(sinon.stub(kueFunc, 'sendNotifWeekly').called, 'opopop')
                     // expect(cron).to.have.been.called()
                     done()
@@ -131,15 +131,32 @@ describe('TEST 2: controllers/index.js', function () {
                     if (err) {
                         console.log(err)
                     }
+
                     done()
                 })
         })
     })
-    // describe('/users/notifPlantComplete', function(){
-    //     it('should test /notifPushComplete without error', function (done) {
-    //         chai.request(app)
-    //             .get
-    //     })
-    // }) 
+    describe('/users/notifPlantComplete', function () {
+        let toPush = {
+            toPush: {
+                expoToken: 'ExponentPushToken[Ki4qWeBkl-DoZflIsrfopb]',
+                item: 'name',
+                userUid: 'uid',
+                link: 'Plant',
+                data: {data: 'dummy'},
+                id: '129120952109'
+            }
+        }
+        it('should test /notifPlantComplete without error', function (done) {
+            chai.request(app)
+                .post('/users/notifPlantComplete')
+                .send(toPush)
+                .end(function (err,res) {
+                    if(err) {
+                        console.log(err)
+                    }
+                    done()
+                })
+        })
+    })
 })
-

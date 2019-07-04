@@ -38,6 +38,7 @@ module.exports = {
     },
     notifPlantComplete(req, res) {
         let toPush = req.body.toPush
+        console.log(req.body,'iopiopiop')
         axios
             .post('https://exp.host/--/api/v2/push/send', {
                 to: toPush.expoToken,
@@ -60,7 +61,7 @@ module.exports = {
                 done()
             })
             .catch(err => {
-                // console.log(err.response, 'inierror dari server')
+                res.status(500).json(err.response)
             })
     }
 }
