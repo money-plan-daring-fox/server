@@ -2,7 +2,6 @@ const router = require('express').Router()
 const controllers = require('../controllers/index')
 
 router.get('/getItemsPrice', controllers.getItemsPrice)
-// router.get('/getRecommendation', controllers.getRecommendation)
-// router.post('/push-token', controllers.pushToken)
+router.post('/notifPlantComplete', controllers.notifPlantComplete)
 
 module.exports = router

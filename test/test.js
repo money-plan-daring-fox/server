@@ -135,5 +135,11 @@ describe('TEST 2: controllers/index.js', function () {
                 })
         })
     })
+    // describe('/users/notifPlantComplete', function(){
+    //     it('should test /notifPushComplete without error', function (done) {
+    //         chai.request(app)
+    //             .get
+    //     })
+    // }) 
 })
 
