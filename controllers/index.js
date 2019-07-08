@@ -26,11 +26,12 @@ module.exports = {
                     return Number(dataPrice) < Number(price) + (0.1 * (Number(price))) && Number(dataPrice) > (Number(price) - (0.1 * Number(price)))
                 })
                 /* istanbul ignore else */
-                if (price) {
-                    res.status(200).json(result)
-                } else if (data.data.products.length > 0) {
+                // if (price) {
+                //     res.status(200).json(result)
+                // } else if (data.data.products.length > 0) {
+                    console.log(data)
                     res.status(200).json(data.data.products)
-                }
+                // }
             })
             .catch(err => {
                 res.status(500).json(err.response)
@@ -38,7 +39,7 @@ module.exports = {
     },
     notifPlantComplete(req, res) {
         let toPush = req.body.toPush
-        console.log(req.body,'iopiopiop')
+        console.log(toPush,'HUHA')
         axios
             .post('https://exp.host/--/api/v2/push/send', {
                 to: toPush.expoToken,
@@ -61,7 +62,7 @@ module.exports = {
                 done()
             })
             .catch(err => {
-                res.status(500).json(err.response)
+                // console.log(err.response, 'inierror dari server')
             })
     }
 }

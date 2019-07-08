@@ -90,7 +90,7 @@ app.listen(PORT, function () {
         kueFunc.sendNotifWeekly()
     }, null, true, 'Asia/Jakarta')
 
-    new CronJob('0 * * * * *', function() {
+    new CronJob('0 0 7 * * *', function() {
         kueFunc.watchEverydayForNotifications()
     }, null, true, 'Asia/Jakarta')
 })

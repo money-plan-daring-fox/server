@@ -24,13 +24,27 @@ const app = firebase.initializeApp({
   // storageBucket: "",
   // messagingSenderId: "861867384752",
   // appId: "1:861867384752:web:f601494e92eb869c"
-  apiKey: "AIzaSyCU1kszW16RqyIDrZ0-BrO6unM9ntlKUao",
-  authDomain: "awesome-plant.firebaseapp.com",
-  databaseURL: "https://awesome-plant.firebaseio.com",
-  projectId: "awesome-plant",
+  // apiKey: "AIzaSyCU1kszW16RqyIDrZ0-BrO6unM9ntlKUao",
+  // authDomain: "awesome-plant.firebaseapp.com",
+  // databaseURL: "https://awesome-plant.firebaseio.com",
+  // projectId: "awesome-plant",
+  // storageBucket: "",
+  // messagingSenderId: "799378575059",
+  // appId: "1:799378575059:web:ce0038ad5499f942"
+  // apiKey: "AIzaSyBRpiaATRuO2CoCbNdWKV9c6TUzGDry5ho",
+  // authDomain: "final-project-saving-plant.firebaseapp.com",
+  // databaseURL: "https://final-project-saving-plant.firebaseio.com",
+  // projectId: "final-project-saving-plant",
+  // storageBucket: "",
+  // messagingSenderId: "1074108335961",
+  // appId: "1:1074108335961:web:d15458eedc56f39a"
+  apiKey: "AIzaSyCY0Erd7qz3Q8TvOLysHQGa1GPPS8KT3-Y",
+  authDomain: "backup-saving-plant.firebaseapp.com",
+  databaseURL: "https://backup-saving-plant.firebaseio.com",
+  projectId: "backup-saving-plant",
   storageBucket: "",
-  messagingSenderId: "799378575059",
-  appId: "1:799378575059:web:ce0038ad5499f942"
+  messagingSenderId: "966022669984",
+  appId: "1:966022669984:web:0e9894798abb9c56"
 });
 
 export default app;
